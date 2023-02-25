@@ -8,6 +8,7 @@ export enum IssueActions {
   ADD = '[Issue] Add',
   SUBMIT = '[Issue] Submit',
   SET_FILTER = '[Issue] Set Filter',
+  SET_ERROR = '[Issue] Set Error',
 }
 
 export const fetchIssues = createAction(IssueActions.FETCH);
@@ -30,4 +31,9 @@ export const addIssue = createAction(
 export const setIssueFilter = createAction(
   IssueActions.SET_FILTER,
   props<{ filter: string }>()
+);
+
+export const setError = createAction(
+  IssueActions.SET_ERROR,
+  props<{ message: string }>()
 );

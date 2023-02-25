@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app.component';
-import { StoreModule } from '@ngrx/store';
+import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { appReducers } from './store/app.reducers';
 import { CountComponent } from './components/count/count.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -18,6 +18,17 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { IssueEffects } from './store/issue/issue.effects';
 import { IssueService } from './services/issue.service';
 import { HttpClientModule } from '@angular/common/http';
+import { localStorageSync } from 'ngrx-store-localstorage';
+import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
+
+export function localStorageSyncReducer(
+  reducer: ActionReducer<any>
+): ActionReducer<any> {
+  return localStorageSync({ keys: ['issue', 'count'], rehydrate: true })(
+    reducer
+  );
+}
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [
@@ -30,7 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(appReducers),
+    StoreModule.forRoot(appReducers, { metaReducers }),
     StoreDevtoolsModule.instrument(),
     FormsModule,
     ReactiveFormsModule,
@@ -38,6 +49,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     EffectsModule.forRoot([IssueEffects]),
     InMemoryWebApiModule.forRoot(DatabaseService),
+    StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal }),
   ],
   providers: [DatabaseService, IssueService],
   bootstrap: [AppComponent],

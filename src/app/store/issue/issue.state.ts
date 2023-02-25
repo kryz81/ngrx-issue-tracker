@@ -9,6 +9,8 @@ export interface IssueState {
   issues: Issues;
   selected: string[];
   loaded: boolean;
+  loading: boolean;
+  error: string;
 }
 
 export interface Issues {
