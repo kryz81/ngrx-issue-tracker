@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: antiquewhite;
+  font-family: "JetBrains Mono", monospace;
+  margin: 25px 100px;
+}
+
+h1 {
+  font-size: 26px;
+  color: teal;
+}
+
+a {
+  text-decoration: none;
+  color: magenta;
+}
+
+hr {
+  border: 0;
+  height: 2px;
+  background-color: tomato;
+}
+
+input, select {
+  padding: 5px;
+  margin: 0 5px;
+  border: solid 1px blueviolet;
+  background-color: lightcyan;
+  color: blue;
+}

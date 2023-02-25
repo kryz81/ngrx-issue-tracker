@@ -1,0 +1,15 @@
+<app-issues></app-issues>
+<h3>List</h3>
+<div>Filter <input name="filter" [(ngModel)]="filter" (ngModelChange)="onFilter()"/></div>
+<ul>
+  <li *ngFor="let issue of issues$ | async">
+    <h4>
+      {{ issue.title }}
+      <small>{{ issue.priority }}</small>
+      <a [routerLink]="[issue.id]">[details]</a>
+    </h4>
+    <p>{{ issue.description }}</p>
+  </li>
+</ul>
+<hr />
+<router-outlet></router-outlet>

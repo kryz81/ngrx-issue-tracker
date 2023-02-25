@@ -1,0 +1,9 @@
+<h1>NgRx Issue Tracker with {{ count$ | async }}</h1>
+<h3>Issues added: {{ issuesCount$ | async }}</h3>
+<div>
+  <a routerLink="/count">Count</a>
+  <a routerLink="/issues">Issues</a>
+  <a routerLink="/settings">Settings</a>
+  <hr />
+</div>
+<div><router-outlet></router-outlet></div>

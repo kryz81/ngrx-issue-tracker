@@ -1,0 +1,6 @@
+<p>
+  Count: {{ count$ | async }}
+  <button (click)="increment()">increment</button>
+  <button (click)="decrement()">decrement</button>
+  <input name="value" [(ngModel)]="value"> <button (click)="change()">change</button>
+</p>
